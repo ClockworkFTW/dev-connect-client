@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import Profile from "./components/Profile";
 import Projects from "./components/Projects";
 import ProjectForm from "./components/ProjectForm";
 import ProjectPage from "./components/ProjectPage";
@@ -34,6 +35,9 @@ const App = ({ userInit }) => {
 				<PublicRoute path="/sign-in">
 					<SignIn />
 				</PublicRoute>
+				<PrivateRoute path="/profile">
+					<Profile />
+				</PrivateRoute>
 				<PrivateRoute path="/project" exact>
 					<Projects />
 				</PrivateRoute>

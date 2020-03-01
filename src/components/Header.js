@@ -8,6 +8,7 @@ const Header = ({ user, userSignOut }) => (
 	<div>
 		{user ? (
 			<div>
+				<Link to="/profile">profile</Link>
 				<Link to="/project">projects</Link>
 				<button onClick={userSignOut}>sign out</button>
 			</div>
