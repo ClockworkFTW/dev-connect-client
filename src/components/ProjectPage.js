@@ -7,7 +7,6 @@ import Stack from "./Stack";
 const ProjectPage = ({ projects }) => {
 	const { id } = useParams();
 	const project = projects.find(e => e._id === id);
-	console.log(id);
 	return (
 		<div>
 			<h1>Project: {project.name}</h1>
