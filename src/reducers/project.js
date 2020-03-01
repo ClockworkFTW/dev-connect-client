@@ -28,7 +28,17 @@ export const fetchProjects = () => async dispatch => {
 	}
 };
 
-const INITIAL_STATE = { pending: false, data: null, error: null };
+export const createProject = project => async dispatch => {
+	dispatch(projectApiPending);
+	try {
+		const newProject = await projectServices.create(project);
+		dispatch(projectApiSuccess(newProject));
+	} catch (error) {
+		dispatch(projectApiFailure(error));
+	}
+};
+
+const INITIAL_STATE = { pending: false, data: [], error: null };
 
 const projectReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {

@@ -14,6 +14,8 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Projects from "./components/Projects";
+import ProjectForm from "./components/ProjectForm";
+import ProjectPage from "./components/ProjectPage";
 
 const App = ({ userInit }) => {
 	useEffect(() => {
@@ -32,8 +34,14 @@ const App = ({ userInit }) => {
 				<PublicRoute path="/sign-in">
 					<SignIn />
 				</PublicRoute>
-				<PrivateRoute path="/project">
+				<PrivateRoute path="/project" exact>
 					<Projects />
+				</PrivateRoute>
+				<PrivateRoute path="/project/new">
+					<ProjectForm />
+				</PrivateRoute>
+				<PrivateRoute path="/project/:id">
+					<ProjectPage />
 				</PrivateRoute>
 			</Switch>
 		</Router>

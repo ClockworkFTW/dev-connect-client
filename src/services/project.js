@@ -9,4 +9,9 @@ const fetch = async () => {
 	return result.data;
 };
 
-export default { fetch };
+const create = async project => {
+	const result = await axios.post(baseURL, project, setAuth());
+	return result.data;
+};
+
+export default { fetch, create };
