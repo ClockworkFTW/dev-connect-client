@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { editUser } from "../../reducers/user";
 
+import Stack from "../Stack";
 import { ProfileView } from "./ProfileView";
 import { ProfileEdit } from "./ProfileEdit";
 
@@ -20,22 +21,28 @@ const ProfileContainer = ({ user, editUser }) => {
 	};
 
 	return edit ? (
-		<ProfileEdit
-			handleSubmit={handleSubmit}
-			user={user}
-			location={location}
-			setLocation={setLocation}
-			bio={bio}
-			setBio={setBio}
-			friends={friends}
-			setFriends={setFriends}
-			stack={stack}
-			setStack={setStack}
-			edit={edit}
-			setEdit={setEdit}
-		/>
+		<form onSubmit={handleSubmit}>
+			<button type="button" onClick={() => setEdit(!edit)}>
+				discard changes
+			</button>
+			<ProfileEdit
+				user={user}
+				location={location}
+				setLocation={setLocation}
+				bio={bio}
+				setBio={setBio}
+			/>
+			<Stack edit={edit} value={stack} setValue={setStack} />
+			<button type="submit">update</button>
+		</form>
 	) : (
-		<ProfileView user={user} edit={edit} setEdit={setEdit} />
+		<div>
+			<button type="button" onClick={() => setEdit(!edit)}>
+				edit profle
+			</button>
+			<ProfileView user={user} />
+			<Stack edit={edit} stack={user.stack} />
+		</div>
 	);
 };
 

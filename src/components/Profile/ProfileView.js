@@ -1,21 +1,15 @@
 import React from "react";
 
 import Gravatar from "../Gravatar";
-import Stack from "../Stack";
+import * as Styled from "./ProfileStyles";
 
-import * as Styled from "./Profile.styles";
-
-export const ProfileView = ({ user, setEdit }) => (
-	<Styled.Container>
-		<div>
-			<Gravatar email={user.email} size="100" />
+export const ProfileView = ({ user }) => (
+	<Styled.ProfileContainer>
+		<Gravatar email={user.email} size="50" />
+		<Styled.ProfileMetadata>
 			<h1>{user.username}</h1>
 			<h3>location: {user.location}</h3>
 			<p>{user.bio}</p>
-			<button type="button" onClick={() => setEdit(true)}>
-				edit profle
-			</button>
-		</div>
-		<Stack edit={false} stack={user.stack} />
-	</Styled.Container>
+		</Styled.ProfileMetadata>
+	</Styled.ProfileContainer>
 );
