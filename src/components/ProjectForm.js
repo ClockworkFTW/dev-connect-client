@@ -43,7 +43,7 @@ const ProjectForm = ({ createProject }) => {
 					value={difficulty}
 					onChange={event => setDifficulty(event.target.value)}
 				/>
-				<Stack value={stack} setValue={setStack} />
+				<Stack edit={true} value={stack} setValue={setStack} />
 				<button type="submit">create</button>
 			</form>
 		</div>

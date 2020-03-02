@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { setAuth } from "../util";
+
 const baseURL = "http://localhost:3001/api/user";
 
 const signUp = async credentials => {
@@ -12,4 +14,9 @@ const signIn = async credentials => {
 	return result.data;
 };
 
-export default { signUp, signIn };
+const edit = async edit => {
+	const result = await axios.put(baseURL, edit, setAuth());
+	return result.data;
+};
+
+export default { signUp, signIn, edit };

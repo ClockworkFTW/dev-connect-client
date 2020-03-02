@@ -20,11 +20,19 @@ const stackApiFailure = error => ({
 
 export const fetchStackList = () => async dispatch => {
 	dispatch(stackApiPending);
-	try {
-		const stacks = await stackServices.fetch();
-		dispatch(stackApiSuccess(stacks));
-	} catch (error) {
-		dispatch(stackApiFailure(error));
+	let cachedStackList = localStorage.getItem("dev-connect-stack-list");
+	if (cachedStackList) {
+		cachedStackList = JSON.parse(cachedStackList);
+		dispatch(stackApiSuccess(cachedStackList));
+	} else {
+		try {
+			const fetchedStackList = await stackServices.fetch();
+			cachedStackList = JSON.stringify(fetchedStackList);
+			localStorage.setItem("dev-connect-stack-list", cachedStackList);
+			dispatch(stackApiSuccess(fetchedStackList));
+		} catch (error) {
+			dispatch(stackApiFailure(error));
+		}
 	}
 };
 

@@ -51,6 +51,18 @@ export const userSignIn = credentials => async dispatch => {
 	}
 };
 
+export const editUser = edit => async dispatch => {
+	dispatch(userApiPending);
+	try {
+		const token = await userServices.edit(edit);
+		localStorage.setItem("token", token);
+		const user = jwt.decode(token, JWT_SECRET);
+		dispatch(userApiSuccess(user));
+	} catch (error) {
+		dispatch(userApiFailure(error));
+	}
+};
+
 export const userSignOut = () => ({
 	type: USER_SIGN_OUT
 });

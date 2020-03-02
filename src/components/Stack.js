@@ -3,37 +3,20 @@ import { connect } from "react-redux";
 
 import { fetchStackList } from "../reducers/stack";
 
-const Stack = ({ stack, stackList, fetchStackList, value, setValue }) => {
+const Stack = ({ edit, stack, stackList, fetchStackList, value, setValue }) => {
 	useEffect(() => {
 		fetchStackList();
 	}, [fetchStackList]);
 
 	const handleSelect = id => {
-		if (value && setValue) {
-			if (value.includes(id)) {
-				setValue(value.filter(stack => stack !== id));
-			} else {
-				setValue([...value, id]);
-			}
+		if (value.includes(id)) {
+			setValue(value.filter(stack => stack !== id));
+		} else {
+			setValue([...value, id]);
 		}
 	};
 
-	return stack ? (
-		<div>
-			{stackList.map(stackItem =>
-				stack.includes(stackItem._id) ? (
-					<div key={stackItem._id}>
-						<h3>{stackItem.name}</h3>
-						<img
-							style={{ width: "100px", height: "100px" }}
-							src={stackItem.icon}
-							alt={stackItem.name}
-						/>
-					</div>
-				) : null
-			)}
-		</div>
-	) : (
+	return edit ? (
 		<div>
 			{stackList.map(stackItem => (
 				<div
@@ -53,6 +36,21 @@ const Stack = ({ stack, stackList, fetchStackList, value, setValue }) => {
 					/>
 				</div>
 			))}
+		</div>
+	) : (
+		<div>
+			{stackList.map(stackItem =>
+				stack.includes(stackItem._id) ? (
+					<div key={stackItem._id}>
+						<h3>{stackItem.name}</h3>
+						<img
+							style={{ width: "100px", height: "100px" }}
+							src={stackItem.icon}
+							alt={stackItem.name}
+						/>
+					</div>
+				) : null
+			)}
 		</div>
 	);
 };
