@@ -14,7 +14,7 @@ export const Friend = ({ friend }) => (
 export const Container = styled.div`
 	display: flex;
 	align-items: center;
-	margin-bottom: 12px;
+	margin: 12px 0;
 `;
 
 export const Name = styled(Link)`
