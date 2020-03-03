@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom";
 import userServices from "../../services/user";
 import { editUser } from "../../reducers/user";
 
-import Stack from "../Stack";
 import { EditButton } from "./EditButton";
 import { ProfileView } from "./ProfileView";
 import { ProfileEdit } from "./ProfileEdit";
+import Stack from "../Stack";
+import { FriendList, FriendButton } from "../Friend";
 
 const ProfileContainer = ({ user, editUser }) => {
 	const { id } = useParams();
@@ -45,9 +46,11 @@ const ProfileContainer = ({ user, editUser }) => {
 	) : (
 		profile && (
 			<div>
+				<FriendButton show={!owner} user={user} id={id} />
 				<EditButton owner={owner} edit={edit} setEdit={setEdit} />
 				<ProfileView profile={profile} />
 				<Stack edit={edit} stack={profile.stack} />
+				{owner && <FriendList />}
 			</div>
 		)
 	);

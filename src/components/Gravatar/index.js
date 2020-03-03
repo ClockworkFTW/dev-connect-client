@@ -3,14 +3,14 @@ import gravatar from "gravatar";
 import styled from "styled-components";
 
 const Gravatar = ({ email, size }) => {
-	const url = gravatar.url(email, { s: size, r: "pg", d: "retro" });
+	const url = gravatar.url(email, { s: size * 2, r: "pg", d: "retro" });
 	return <StyledImage size={size} src={url} alt="gravatar" />;
 };
 
 const StyledImage = styled.img`
 	flex: ${props => `0 0 ${props.size}px`};
 	height: ${props => `${props.size}px`};
-	border-radius: 50%;
+	border-radius: 2px;
 `;
 
 export default Gravatar;
