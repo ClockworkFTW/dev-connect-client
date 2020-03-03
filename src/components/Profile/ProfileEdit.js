@@ -3,21 +3,25 @@ import React from "react";
 import Gravatar from "../Gravatar";
 import * as Styled from "./ProfileStyles";
 
-export const ProfileEdit = ({ user, location, setLocation, bio, setBio }) => (
+export const ProfileEdit = ({ profile, setProfile }) => (
 	<Styled.ProfileContainer>
-		<Gravatar email={user.email} size="50" />
+		<Gravatar email={profile.email} size="50" />
 		<div>
-			<h1>{user.username}</h1>
+			<h1>{profile.username}</h1>
 			<input
 				type="text"
 				placeholder="location"
-				value={location}
-				onChange={event => setLocation(event.target.value)}
+				value={profile.location}
+				onChange={event =>
+					setProfile({ ...profile, location: event.target.value })
+				}
 			/>
 			<textarea
 				placeholder="bio"
-				value={bio}
-				onChange={event => setBio(event.target.value)}
+				value={profile.bio}
+				onChange={event =>
+					setProfile({ ...profile, bio: event.target.value })
+				}
 			/>
 		</div>
 	</Styled.ProfileContainer>

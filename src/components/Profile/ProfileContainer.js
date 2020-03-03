@@ -1,48 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 
+import userServices from "../../services/user";
 import { editUser } from "../../reducers/user";
 
 import Stack from "../Stack";
+import { EditButton } from "./EditButton";
 import { ProfileView } from "./ProfileView";
 import { ProfileEdit } from "./ProfileEdit";
 
 const ProfileContainer = ({ user, editUser }) => {
+	const { id } = useParams();
+	const owner = user.id === id;
+
+	const [profile, setProfile] = useState(null);
+
+	useEffect(() => {
+		if (!owner) {
+			userServices.fetch(id, setProfile);
+		} else {
+			setProfile(user);
+		}
+	}, [id, owner, user]);
+
 	const [edit, setEdit] = useState(false);
 
-	const [location, setLocation] = useState(user.location);
-	const [bio, setBio] = useState(user.bio);
-	const [friends, setFriends] = useState(user.friends);
-	const [stack, setStack] = useState(user.stack);
+	const setStack = stack => {
+		setProfile({ ...profile, stack });
+	};
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		editUser({ id: user._id, location, bio, friends, stack });
+		editUser(profile);
 	};
 
 	return edit ? (
 		<form onSubmit={handleSubmit}>
-			<button type="button" onClick={() => setEdit(!edit)}>
-				discard changes
-			</button>
-			<ProfileEdit
-				user={user}
-				location={location}
-				setLocation={setLocation}
-				bio={bio}
-				setBio={setBio}
-			/>
-			<Stack edit={edit} value={stack} setValue={setStack} />
+			<EditButton owner={owner} edit={edit} setEdit={setEdit} />
+			<ProfileEdit profile={profile} setProfile={setProfile} />
+			<Stack edit={edit} value={profile.stack} setValue={setStack} />
 			<button type="submit">update</button>
 		</form>
 	) : (
-		<div>
-			<button type="button" onClick={() => setEdit(!edit)}>
-				edit profle
-			</button>
-			<ProfileView user={user} />
-			<Stack edit={edit} stack={user.stack} />
-		</div>
+		profile && (
+			<div>
+				<EditButton owner={owner} edit={edit} setEdit={setEdit} />
+				<ProfileView profile={profile} />
+				<Stack edit={edit} stack={profile.stack} />
+			</div>
+		)
 	);
 };
 

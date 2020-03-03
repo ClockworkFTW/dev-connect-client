@@ -14,9 +14,14 @@ const signIn = async credentials => {
 	return result.data;
 };
 
+const fetch = async (id, setProfile) => {
+	const result = await axios.get(`${baseURL}/${id}`, setAuth());
+	setProfile(result.data);
+};
+
 const edit = async edit => {
 	const result = await axios.put(baseURL, edit, setAuth());
 	return result.data;
 };
 
-export default { signUp, signIn, edit };
+export default { signUp, signIn, fetch, edit };

@@ -35,7 +35,7 @@ const App = ({ userInit }) => {
 				<PublicRoute path="/sign-in">
 					<SignIn />
 				</PublicRoute>
-				<PrivateRoute path="/profile">
+				<PrivateRoute path="/profile/:id">
 					<Profile />
 				</PrivateRoute>
 				<PrivateRoute path="/project" exact>
