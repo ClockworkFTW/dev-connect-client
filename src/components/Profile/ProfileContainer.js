@@ -27,6 +27,11 @@ const ProfileContainer = ({ user, editUser }) => {
 
 	const [edit, setEdit] = useState(false);
 
+	const toggleEdit = () => {
+		setProfile(user);
+		setEdit(!edit);
+	};
+
 	const setStack = stack => {
 		setProfile({ ...profile, stack });
 	};
@@ -38,17 +43,17 @@ const ProfileContainer = ({ user, editUser }) => {
 
 	return edit ? (
 		<form onSubmit={handleSubmit}>
-			<EditButton owner={owner} edit={edit} setEdit={setEdit} />
 			<ProfileEdit profile={profile} setProfile={setProfile} />
+			<EditButton owner={owner} edit={edit} toggle={toggleEdit} />
+			<button type="submit">update profile</button>
 			<Stack edit={edit} value={profile.stack} setValue={setStack} />
-			<button type="submit">update</button>
 		</form>
 	) : (
 		profile && (
 			<div>
-				<FriendButton show={!owner} user={user} id={id} />
-				<EditButton owner={owner} edit={edit} setEdit={setEdit} />
 				<ProfileView profile={profile} />
+				<EditButton owner={owner} edit={edit} toggle={toggleEdit} />
+				<FriendButton show={!owner} user={user} id={id} />
 				<Stack edit={edit} stack={profile.stack} />
 				{owner && <FriendList />}
 			</div>

@@ -1,15 +1,42 @@
 import React from "react";
+import styled from "styled-components";
 
 import Gravatar from "../Gravatar";
-import * as Styled from "./ProfileStyles";
 
 export const ProfileView = ({ profile }) => (
-	<Styled.ProfileContainer>
-		<Gravatar email={profile.email} size="50" />
-		<Styled.ProfileMetadata>
-			<h1>{profile.username}</h1>
-			<h3>location: {profile.location}</h3>
-			<p>{profile.bio}</p>
-		</Styled.ProfileMetadata>
-	</Styled.ProfileContainer>
+	<Container>
+		<Gravatar email={profile.email} size="100" />
+		<Details>
+			<Username>{profile.username}</Username>
+			<Location>{profile.location}</Location>
+			<Bio>{profile.bio}</Bio>
+		</Details>
+	</Container>
 );
+
+const Container = styled.div`
+	display: flex;
+	margin: 20px 0;
+`;
+
+const Details = styled.div`
+	flex: 1;
+	margin-left: 20px;
+`;
+
+const Username = styled.h1`
+	font-size: 24px;
+	font-weight: 700;
+	color: #2d3748;
+`;
+
+const Location = styled.h5`
+	margin: 6px 0px 14px 0px;
+	font-size: 14px;
+	color: #a0aec0;
+`;
+
+const Bio = styled.p`
+	font-size: 16px;
+	color: #4a5568;
+`;

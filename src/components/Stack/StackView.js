@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import * as Styled from "./StackStyles";
 
 export const StackView = ({ stack, stackList }) => (
-	<div>
+	<Container>
 		{stackList.map(stackItem =>
 			stack.includes(stackItem._id) ? (
 				<Link key={stackItem._id} to={`/stack/${stackItem._id}`}>
@@ -15,5 +16,9 @@ export const StackView = ({ stack, stackList }) => (
 				</Link>
 			) : null
 		)}
-	</div>
+	</Container>
 );
+
+const Container = styled.div`
+	margin: 20px 0;
+`;

@@ -1,9 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 
 import * as Styled from "./StackStyles";
 
 export const StackEdit = ({ stackList, value, handleSelect }) => (
-	<div>
+	<Container>
 		{stackList.map(stackItem => (
 			<Styled.StackItem
 				key={stackItem._id}
@@ -13,5 +14,9 @@ export const StackEdit = ({ stackList, value, handleSelect }) => (
 				<Styled.StackIcon src={stackItem.icon} alt={stackItem.name} />
 			</Styled.StackItem>
 		))}
-	</div>
+	</Container>
 );
+
+const Container = styled.div`
+	margin: 20px 0;
+`;
