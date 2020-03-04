@@ -17,7 +17,7 @@ import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
 import { ProjectList } from "./components/Projects";
 import ProjectForm from "./components/ProjectForm";
-import ProjectPage from "./components/ProjectPage";
+import { ProjectPage } from "./components/ProjectPage";
 
 const App = ({ userInit }) => {
 	useEffect(() => {

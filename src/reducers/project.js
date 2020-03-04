@@ -38,6 +38,16 @@ export const createProject = project => async dispatch => {
 	}
 };
 
+export const updateProject = (id, update) => async dispatch => {
+	dispatch(projectApiPending);
+	try {
+		const updatedProject = await projectServices.update(id, update);
+		dispatch(projectApiSuccess(updatedProject, "update"));
+	} catch (error) {
+		dispatch(projectApiFailure(error));
+	}
+};
+
 const INITIAL_STATE = { pending: false, data: [], error: null };
 
 const projectReducer = (state = INITIAL_STATE, action) => {
@@ -66,6 +76,9 @@ const updateData = (oldData, action) => {
 			break;
 		case "create":
 			newData = [...oldData, data];
+			break;
+		case "update":
+			newData = oldData.map(e => (e._id === data._id ? data : e));
 			break;
 		default:
 			newData = oldData;

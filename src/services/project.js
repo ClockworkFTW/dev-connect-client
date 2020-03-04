@@ -14,4 +14,9 @@ const create = async project => {
 	return result.data;
 };
 
-export default { fetch, create };
+const update = async (id, update) => {
+	const result = await axios.put(`${baseURL}/${id}`, update, setAuth());
+	return result.data;
+};
+
+export default { fetch, create, update };

@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import styled from "styled-components";
 
+import { VoteCount } from "../ProjectPage";
 import Gravatar from "../Gravatar";
 
 export const ProjectCard = ({ project }) => (
 	<Container to={`/project/${project._id}`}>
+		<Gravatar email={project.manager.email} size="30" />
 		<Name>{project.name}</Name>
 		<Created>{moment(project.created).format("MMM D, YYYY")}</Created>
-		<Link to={`/profile/${project.manager._id}`}>
-			<Gravatar email={project.manager.email} size="30" />
-		</Link>
+		<VoteCount votes={project.votes} />
 	</Container>
 );
 
