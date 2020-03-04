@@ -8,9 +8,9 @@ const projectApiPending = () => ({
 	type: PROJECT_API_PENDING
 });
 
-const projectApiSuccess = data => ({
+const projectApiSuccess = (data, method) => ({
 	type: PROJECT_API_SUCCESS,
-	data
+	project: { data, method }
 });
 
 const projectApiFailure = error => ({
@@ -22,7 +22,7 @@ export const fetchProjects = () => async dispatch => {
 	dispatch(projectApiPending);
 	try {
 		const projects = await projectServices.fetch();
-		dispatch(projectApiSuccess(projects));
+		dispatch(projectApiSuccess(projects, "read"));
 	} catch (error) {
 		dispatch(projectApiFailure(error));
 	}
@@ -32,7 +32,7 @@ export const createProject = project => async dispatch => {
 	dispatch(projectApiPending);
 	try {
 		const newProject = await projectServices.create(project);
-		dispatch(projectApiSuccess(newProject));
+		dispatch(projectApiSuccess(newProject, "create"));
 	} catch (error) {
 		dispatch(projectApiFailure(error));
 	}
@@ -45,12 +45,33 @@ const projectReducer = (state = INITIAL_STATE, action) => {
 		case PROJECT_API_PENDING:
 			return { ...state, pending: true };
 		case PROJECT_API_SUCCESS:
-			return { ...state, data: action.data, pending: false };
+			return {
+				...state,
+				data: updateData(state.data, action),
+				pending: false
+			};
 		case PROJECT_API_FAILURE:
 			return { ...state, error: action.error, pending: false };
 		default:
 			return state;
 	}
+};
+
+const updateData = (oldData, action) => {
+	const { data, method } = action.project;
+	let newData;
+	switch (method) {
+		case "read":
+			newData = data;
+			break;
+		case "create":
+			newData = [...oldData, data];
+			break;
+		default:
+			newData = oldData;
+			break;
+	}
+	return newData;
 };
 
 export default projectReducer;

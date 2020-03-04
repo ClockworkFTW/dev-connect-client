@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchProjects } from "../reducers/project";
+import { fetchProjects } from "../../reducers/project";
+
+import { ProjectCard } from "./ProjectCard";
 
 const Projects = ({ projects, fetchProjects }) => {
 	useEffect(() => {
@@ -11,13 +13,12 @@ const Projects = ({ projects, fetchProjects }) => {
 
 	return (
 		<div>
-			<h1>Projects</h1>
+			<Link to="/project/new">
+				<button>create project</button>
+			</Link>
 			{projects.map(project => (
-				<div key={project._id}>
-					<Link to={`/project/${project._id}`}>{project.name}</Link>
-				</div>
+				<ProjectCard key={project._id} project={project} />
 			))}
-			<Link to="/project/new">create a new project</Link>
 		</div>
 	);
 };
