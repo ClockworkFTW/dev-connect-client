@@ -15,7 +15,7 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
-import { ProjectList } from "./components/Projects";
+import { ProjectList } from "./components/ProjectList";
 import ProjectForm from "./components/ProjectForm";
 import { ProjectPage } from "./components/ProjectPage";
 

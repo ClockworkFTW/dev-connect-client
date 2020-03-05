@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import styled from "styled-components";
 
+import ProjectMatch from "../ProjectMatch";
 import { VoteCount } from "../ProjectPage";
 import Gravatar from "../Gravatar";
 
@@ -12,6 +13,7 @@ export const ProjectCard = ({ project }) => (
 		<Name>{project.name}</Name>
 		<Created>{moment(project.created).format("MMM D, YYYY")}</Created>
 		<VoteCount votes={project.votes} />
+		<ProjectMatch stack={project.stack} />
 	</Container>
 );
 
