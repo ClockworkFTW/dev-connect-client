@@ -20,7 +20,7 @@ export const ProjectView = ({ project }) => (
 				<Description>{project.description}</Description>
 			</Details>
 		</Header>
-		<Stack stack={project.stack} />
+		<Stack stack={project.stack} size="50" />
 	</Container>
 );
 

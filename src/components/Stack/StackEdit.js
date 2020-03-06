@@ -1,18 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-import { SectionHeader } from "../Common";
-
-export const StackEdit = ({ stackList, value, handleSelect }) => (
+export const StackEdit = ({ stackList, value, handleSelect, size }) => (
 	<Container>
-		<SectionHeader>Stack List</SectionHeader>
 		{stackList.map(stackItem => (
 			<StackItem
 				key={stackItem._id}
 				active={value.includes(stackItem._id)}
 				onClick={() => handleSelect(stackItem._id)}
 			>
-				<StackIcon src={stackItem.icon} alt={stackItem.name} />
+				<StackIcon
+					src={stackItem.icon}
+					alt={stackItem.name}
+					size={size}
+				/>
 			</StackItem>
 		))}
 	</Container>
@@ -33,6 +34,6 @@ const StackItem = styled.div`
 `;
 
 const StackIcon = styled.img`
-	width: 50px;
-	height: 50px;
+	width: ${props => `${props.size}px`};
+	height: ${props => `${props.size}px`};
 `;

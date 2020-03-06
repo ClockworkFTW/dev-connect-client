@@ -46,7 +46,12 @@ const ProfileContainer = ({ user, editUser }) => {
 			<ProfileEdit profile={profile} setProfile={setProfile} />
 			<EditButton owner={owner} edit={edit} toggle={toggleEdit} />
 			<button type="submit">update profile</button>
-			<Stack edit={edit} value={profile.stack} setValue={setStack} />
+			<Stack
+				edit={edit}
+				value={profile.stack}
+				setValue={setStack}
+				size="50"
+			/>
 		</form>
 	) : (
 		profile && (
@@ -54,7 +59,7 @@ const ProfileContainer = ({ user, editUser }) => {
 				<ProfileView profile={profile} />
 				<EditButton owner={owner} edit={edit} toggle={toggleEdit} />
 				<FriendButton show={!owner} user={user} id={id} />
-				<Stack edit={edit} stack={profile.stack} />
+				<Stack edit={edit} stack={profile.stack} size="50" />
 				{owner && <FriendList />}
 			</div>
 		)

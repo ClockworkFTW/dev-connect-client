@@ -6,7 +6,17 @@ import { fetchStackList } from "../../reducers/stack";
 import { StackEdit } from "./StackEdit";
 import { StackView } from "./StackView";
 
-const Stack = ({ edit, stack, stackList, fetchStackList, value, setValue }) => {
+const Stack = props => {
+	const {
+		edit,
+		stack,
+		stackList,
+		fetchStackList,
+		value,
+		setValue,
+		size
+	} = props;
+
 	useEffect(() => {
 		fetchStackList();
 	}, [fetchStackList]);
@@ -24,9 +34,10 @@ const Stack = ({ edit, stack, stackList, fetchStackList, value, setValue }) => {
 			stackList={stackList}
 			value={value}
 			handleSelect={handleSelect}
+			size={size}
 		/>
 	) : (
-		<StackView stack={stack} stackList={stackList} />
+		<StackView stack={stack} stackList={stackList} size={size} />
 	);
 };
 

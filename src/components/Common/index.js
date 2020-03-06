@@ -1,6 +1,9 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+html {
+	background: #EDF2F7;
+}
   body {
     font-family: 'Roboto';
   }

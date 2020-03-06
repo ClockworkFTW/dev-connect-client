@@ -21,7 +21,7 @@ const Header = ({ user, userSignOut }) => (
 
 const Wrapper = styled.div`
 	padding: 12px 20px;
-	border-bottom: 1px solid #edf2f7;
+	background: #ffffff;
 `;
 
 const Container = styled.div`

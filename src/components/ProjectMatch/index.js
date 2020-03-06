@@ -12,7 +12,7 @@ const ProjectMatch = ({ user, stack }) => {
 		});
 	});
 
-	const matchPercent = (matchCount / stack.length) * 100;
+	const matchPercent = Math.round((matchCount / stack.length) * 100);
 
 	return <h1>{matchPercent}%</h1>;
 };

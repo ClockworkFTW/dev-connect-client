@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { SectionHeader } from "../Common";
-
-export const StackView = ({ stack, stackList }) => (
+export const StackView = ({ stack, stackList, size }) => (
 	<Container>
-		<SectionHeader>Stack List</SectionHeader>
 		{stackList.map(stackItem =>
 			stack.includes(stackItem._id) ? (
 				<StackItem key={stackItem._id} to={`/stack/${stackItem._id}`}>
-					<StackIcon src={stackItem.icon} alt={stackItem.name} />
+					<StackIcon
+						src={stackItem.icon}
+						alt={stackItem.name}
+						size={size}
+					/>
 				</StackItem>
 			) : null
 		)}
@@ -30,6 +31,6 @@ const StackItem = styled(Link)`
 `;
 
 const StackIcon = styled.img`
-	width: 50px;
-	height: 50px;
+	width: ${props => `${props.size}px`};
+	height: ${props => `${props.size}px`};
 `;

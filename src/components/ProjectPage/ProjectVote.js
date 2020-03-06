@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import { updateProject } from "../../reducers/project";
-
-import { VoteCount } from "./VoteCount";
+import { voteCount } from "../../util";
 
 const ProjectVote = ({ projectId, votes, user, updateProject }) => {
 	const hasVoted = votes.find(vote => vote.user === user.id);
@@ -28,7 +27,7 @@ const ProjectVote = ({ projectId, votes, user, updateProject }) => {
 			>
 				+
 			</Button>
-			<VoteCount votes={votes} />
+			<Count>{voteCount(votes)}</Count>
 			<Button
 				type="submit"
 				disabled={hasVoted ? !hasVoted.up : false}
@@ -42,6 +41,10 @@ const ProjectVote = ({ projectId, votes, user, updateProject }) => {
 
 const Container = styled.div`
 	text-align: center;
+`;
+
+const Count = styled.span`
+	margin: 8px 0;
 `;
 
 const Button = styled.button``;
