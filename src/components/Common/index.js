@@ -1,4 +1,11 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/pro-solid-svg-icons";
+import { far } from "@fortawesome/pro-regular-svg-icons";
+
+import { RouterButton } from "./RouterButton";
+
+library.add(fas, far);
 
 export const GlobalStyle = createGlobalStyle`
 html {
@@ -20,3 +27,5 @@ export const SectionHeader = styled.h3`
 	font-weight: 700;
 	color: #2d3748;
 `;
+
+export { RouterButton };

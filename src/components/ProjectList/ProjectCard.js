@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
-import { ProjectVote } from "../ProjectPage";
+import ProjectVote from "../ProjectVote";
 import ProjectMatch from "../ProjectMatch";
 import Gravatar from "../Gravatar";
 import Stack from "../Stack";
@@ -11,19 +12,19 @@ import Stack from "../Stack";
 export const ProjectCard = ({ project }) => (
 	<Container>
 		<ProjectVote projectId={project._id} votes={project.votes} />
-		<div>
-			<Name>{project.name}</Name>
-			<Created>{moment(project.created).format("MMM D, YYYY")}</Created>
+		<ProjectDetails>
+			<Name to={`/project/${project._id}`}>{project.name}</Name>
+			<Created>
+				<Icon icon={["far", "calendar"]} />
+				{moment(project.created).format("MMM D, YYYY")}
+			</Created>
 			<Description>{project.description}</Description>
 			<Gravatar email={project.manager.email} size="30" />
 			<Status>Status</Status>
 			<Difficulty>{project.difficulty}</Difficulty>
 			<ProjectMatch stack={project.stack} />
 			<Stack stack={project.stack} size="30" />
-			<Button>
-				<Link to={`/project/${project._id}`}>view project</Link>
-			</Button>
-		</div>
+		</ProjectDetails>
 	</Container>
 );
 
@@ -35,7 +36,11 @@ const Container = styled.div`
 	background: #ffffff;
 `;
 
-const Name = styled.h1`
+const ProjectDetails = styled.div`
+	margin-left: 20px;
+`;
+
+const Name = styled(Link)`
 	text-decoration: none;
 	font-size: 24px;
 	font-weight: 700;
@@ -46,6 +51,10 @@ const Created = styled.h5`
 	margin-top: 6px;
 	font-size: 14px;
 	color: #a0aec0;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+	margin-right: 4px;
 `;
 
 const Description = styled.p``;

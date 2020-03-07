@@ -1,19 +1,20 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const Sort = ({ value, setValue }) => (
 	<Container>
 		<Button active={value === "new"} onClick={() => setValue("new")}>
-			new
+			<Icon icon={["far", "fire"]} /> new
 		</Button>
 		<Button
 			active={value === "popular"}
 			onClick={() => setValue("popular")}
 		>
-			popular
+			<Icon icon={["far", "star"]} /> popular
 		</Button>
 		<Button active={value === "match"} onClick={() => setValue("match")}>
-			match
+			<Icon icon={["far", "badge-percent"]} /> match
 		</Button>
 	</Container>
 );
@@ -21,6 +22,17 @@ export const Sort = ({ value, setValue }) => (
 const Container = styled.div``;
 
 const Button = styled.button`
-	background: ${props => (props.active ? "blue" : "none")};
-	color: ${props => (props.active ? "white" : "black")};
+	margin-left: 4px;
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 16px;
+	color: ${props => (props.active ? "#667EEA" : "#A0AEC0")};
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+	margin-right: 4px;
 `;

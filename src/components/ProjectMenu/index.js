@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { setProjectSearch } from "../../reducers/project-search";
 import { setProjectSort } from "../../reducers/project-sort";
 
+import { RouterButton } from "../Common";
+import { Search } from "./Search";
 import { Sort } from "./Sort";
 
 const ProjectMenu = props => {
@@ -18,14 +19,12 @@ const ProjectMenu = props => {
 
 	return (
 		<Container>
-			<button>
-				<Link to="/project/new">create project</Link>
-			</button>
-			<input
-				type="text"
-				value={projectSearch}
-				onChange={e => setProjectSearch(e.target.value)}
-			/>
+			<div>
+				<RouterButton path="/project/new" icon={["far", "plus"]}>
+					Create Project
+				</RouterButton>
+				<Search value={projectSearch} setValue={setProjectSearch} />
+			</div>
 			<Sort value={projectSort} setValue={setProjectSort} />
 		</Container>
 	);

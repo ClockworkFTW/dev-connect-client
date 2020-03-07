@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Gravatar from "../Gravatar";
-import ProjectVote from "./ProjectVote";
+import ProjectVote from "../ProjectVote";
 import Stack from "../Stack";
 
 export const ProjectView = ({ project }) => (
