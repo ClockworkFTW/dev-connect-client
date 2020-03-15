@@ -3,7 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { far } from "@fortawesome/pro-regular-svg-icons";
 
-import { RouterButton } from "./RouterButton";
+import { ButtonLink } from "./ButtonLink";
 
 library.add(fas, far);
 
@@ -17,15 +17,16 @@ html {
 `;
 
 export const PageContainer = styled.div`
-	max-width: 800px;
-	margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
 `;
 
 export const SectionHeader = styled.h3`
-	margin-bottom: 12px;
-	font-size: 18px;
-	font-weight: 700;
-	color: #2d3748;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3748;
 `;
 
-export { RouterButton };
+export { ButtonLink };
