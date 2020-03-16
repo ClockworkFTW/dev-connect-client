@@ -6,20 +6,20 @@ import ProjectVote from "../ProjectVote";
 import ProjectMatch from "../ProjectMatch";
 import { ProjectDate } from "./ProjectDate";
 import { ProfileChip } from "./ProfileChip";
-import { Difficulty } from "./Difficulty";
+import { ProjectDifficulty } from "./ProjectDifficulty";
 
 export const ProjectCard = ({ project }) => (
   <Container>
     <ProjectVote projectId={project._id} votes={project.votes} />
     <ProjectDetails>
       <Banner>
-        <Difficulty difficulty={project.difficulty} />
+        <ProjectDifficulty difficulty={project.difficulty} />
         <ProjectDate create={project.created} />
       </Banner>
       <Name to={`/project/${project._id}`}>{project.name}</Name>
       <Description>{project.description}</Description>
       <Banner>
-        <ProfileChip manager={project.manager} />
+        <ProfileChip user={project.manager} />
         <ProjectMatch stack={project.stack} />
       </Banner>
     </ProjectDetails>
@@ -35,7 +35,7 @@ const Container = styled.div`
 `;
 
 const ProjectDetails = styled.div`
-  flex 1;
+  flex: 1;
   margin-left: 20px;
 `;
 

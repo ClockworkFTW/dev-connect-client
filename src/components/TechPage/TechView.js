@@ -43,5 +43,3 @@ const Description = styled.p`
   line-height: 20px;
   color: #4a5568;
 `;
-
-const Link = styled.a``;

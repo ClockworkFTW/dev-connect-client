@@ -1,37 +1,42 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 
 import { editUser } from "../../reducers/user";
 
-const FriendButton = ({ show, id, user, editUser }) => {
-	const { friends } = user;
+import { ButtonRegular } from "../Common";
 
-	let isFriend = false;
-	friends.forEach(e => {
-		if (e._id === id) {
-			isFriend = true;
-		}
-	});
+const FriendButton = ({ id, user, editUser }) => {
+  const { friends } = user;
 
-	const addFriend = () => {
-		const updatedFriends = [...friends, id];
-		editUser({ friends: updatedFriends });
-	};
+  let isFriend = false;
+  friends.forEach(e => {
+    if (e._id === id) {
+      isFriend = true;
+    }
+  });
 
-	const removeFriend = () => {
-		const updatedFriends = friends.filter(friend => friend._id !== id);
-		editUser({ friends: updatedFriends });
-	};
+  const addFriend = () => {
+    const updatedFriends = [...friends, id];
+    editUser({ friends: updatedFriends });
+  };
 
-	return user && show ? (
-		<Button type="button" onClick={isFriend ? removeFriend : addFriend}>
-			{isFriend ? "remove friend" : "add friend"}
-		</Button>
-	) : null;
+  const removeFriend = () => {
+    const updatedFriends = friends.filter(friend => friend._id !== id);
+    editUser({ friends: updatedFriends });
+  };
+
+  return (
+    user && (
+      <ButtonRegular
+        type="button"
+        icon={["far", isFriend ? "user-minus" : "user-plus"]}
+        onClick={isFriend ? removeFriend : addFriend}
+        size="20px"
+        theme="basic"
+      />
+    )
+  );
 };
-
-const Button = styled.button``;
 
 const mapStateToProps = state => ({ user: state.user.data });
 

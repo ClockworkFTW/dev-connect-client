@@ -20,7 +20,7 @@ const ProjectMenu = props => {
   return (
     <Container>
       <div>
-        <ButtonLink path="/project/new" icon={["far", "plus"]}>
+        <ButtonLink path="/project/new" icon={["far", "plus"]} theme="primary">
           Create Project
         </ButtonLink>
         <Search value={projectSearch} setValue={setProjectSearch} />

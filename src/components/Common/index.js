@@ -3,7 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { far } from "@fortawesome/pro-regular-svg-icons";
 
-import { ButtonLink } from "./ButtonLink";
+import { ButtonRegular, ButtonLink } from "./Buttons";
 
 library.add(fas, far);
 
@@ -29,4 +29,4 @@ export const SectionHeader = styled.h3`
   color: #2d3748;
 `;
 
-export { ButtonLink };
+export { ButtonRegular, ButtonLink };

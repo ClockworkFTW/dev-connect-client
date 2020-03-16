@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Difficulty = ({ difficulty }) => {
+export const ProjectDifficulty = ({ difficulty }) => {
   const setTheme = () => {
     let theme = {};
     switch (difficulty) {

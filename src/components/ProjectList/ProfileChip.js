@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 import Gravatar from "../Gravatar";
 
-export const ProfileChip = ({ manager }) => (
-  <Container to={`/profile/${manager._id}`}>
-    <Gravatar email={manager.email} size="30" />
-    <Username>{manager.username}</Username>
+export const ProfileChip = ({ user }) => (
+  <Container to={`/profile/${user._id}`}>
+    <Gravatar email={user.email} size="30" />
+    <Username>{user.username}</Username>
   </Container>
 );
 
