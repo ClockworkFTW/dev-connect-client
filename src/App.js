@@ -8,54 +8,50 @@ import {
 
 import { userInit } from "./reducers/user";
 
-import { GlobalStyle, PageContainer } from "./components/Common";
-import PrivateRoute from "./components/PrivateRoute";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
-import Profile from "./components/Profile";
-import Project from "./routes/Project";
-import ProjectForm from "./components/ProjectForm";
-import { ProjectPage } from "./components/ProjectPage";
-import { TechPage } from "./components/TechPage";
+import { GlobalStyle, PrivateRoute } from "./components/Common";
+import LandingPage from "./routes/LandingPage";
+import SignInPage from "./routes/SignInPage";
+import SignUpPage from "./routes/SignUpPage";
+import ProfilePage from "./routes/ProfilePage";
+import ProjectFeed from "./routes/ProjectFeed";
+import ProjectForm from "./routes/ProjectForm";
+import ProjectPage from "./routes/ProjectPage";
+import TechPage from "./routes/TechPage";
 
 const App = ({ userInit }) => {
   useEffect(() => {
     userInit();
   }, [userInit]);
+
   return (
     <Router>
       <GlobalStyle />
-      <Header />
-      <PageContainer>
-        <Switch>
-          <PublicRoute path="/" exact>
-            <Home />
-          </PublicRoute>
-          <PublicRoute path="/sign-up">
-            <SignUp />
-          </PublicRoute>
-          <PublicRoute path="/sign-in">
-            <SignIn />
-          </PublicRoute>
-          <PrivateRoute path="/profile/:id">
-            <Profile />
-          </PrivateRoute>
-          <PrivateRoute path="/project" exact>
-            <Project />
-          </PrivateRoute>
-          <PrivateRoute path="/project/new">
-            <ProjectForm />
-          </PrivateRoute>
-          <PrivateRoute path="/project/:id">
-            <ProjectPage />
-          </PrivateRoute>
-          <PrivateRoute path="/tech/:id">
-            <TechPage />
-          </PrivateRoute>
-        </Switch>
-      </PageContainer>
+      <Switch>
+        <PublicRoute path="/" exact>
+          <LandingPage />
+        </PublicRoute>
+        <PublicRoute path="/sign-up">
+          <SignUpPage />
+        </PublicRoute>
+        <PublicRoute path="/sign-in">
+          <SignInPage />
+        </PublicRoute>
+        <PrivateRoute path="/profile/:id">
+          <ProfilePage />
+        </PrivateRoute>
+        <PrivateRoute path="/project" exact>
+          <ProjectFeed />
+        </PrivateRoute>
+        <PrivateRoute path="/project/new">
+          <ProjectForm />
+        </PrivateRoute>
+        <PrivateRoute path="/project/:id">
+          <ProjectPage />
+        </PrivateRoute>
+        <PrivateRoute path="/tech/:id">
+          <TechPage />
+        </PrivateRoute>
+      </Switch>
     </Router>
   );
 };

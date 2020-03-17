@@ -3,23 +3,21 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { far } from "@fortawesome/pro-regular-svg-icons";
 
+import PrivateRoute from "./PrivateRoute";
+import { Layout } from "./Layout";
 import { ButtonRegular, ButtonLink } from "./Buttons";
 
 library.add(fas, far);
 
 export const GlobalStyle = createGlobalStyle`
-html {
-	background: #EDF2F7;
-}
-  body {
+  html {
+    box-sizing: border-box;
     font-family: 'Roboto';
+    background: #EDF2F7;
   }
-`;
-
-export const PageContainer = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 `;
 
 export const SectionHeader = styled.h3`
@@ -29,4 +27,4 @@ export const SectionHeader = styled.h3`
   color: #2d3748;
 `;
 
-export { ButtonRegular, ButtonLink };
+export { PrivateRoute, Layout, ButtonRegular, ButtonLink };
