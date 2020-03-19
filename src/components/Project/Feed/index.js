@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { fetchProjects } from "../../../reducers/project";
 import { matchPercent, voteCount } from "../../../util";
 
-import { Card } from "./Card";
+import { Layout } from "../../Common";
+import Menu from "./Menu";
+import { View } from "./View";
 
 const Feed = ({ projects, fetchProjects }) => {
   useEffect(() => {
@@ -12,11 +14,10 @@ const Feed = ({ projects, fetchProjects }) => {
   }, [fetchProjects]);
 
   return (
-    <div>
-      {projects.map(project => (
-        <Card key={project._id} project={project} />
-      ))}
-    </div>
+    <Layout>
+      <Menu />
+      <View projects={projects} />
+    </Layout>
   );
 };
 
@@ -44,6 +45,6 @@ const filterProjects = ({ user, projects, projectSearch, projectSort }) => {
   return result;
 };
 
-const mapStateToProps = state => ({ projects: filterProjects(state) });
-
-export default connect(mapStateToProps, { fetchProjects })(Feed);
+export default connect(state => ({ projects: filterProjects(state) }), {
+  fetchProjects
+})(Feed);

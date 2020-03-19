@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Gravatar } from "./Gravatar";
 
 export const Chip = ({ user }) => (
-  <Container to={`/profile/${user._id}`}>
+  <Container to={`/profile/${user.id}`}>
     <Gravatar email={user.email} size="30" />
     <Username>{user.username}</Username>
   </Container>

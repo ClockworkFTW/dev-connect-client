@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ButtonRegular } from "../Common";
+import { ButtonRegular } from "../../Common";
 import { Gravatar } from "./Gravatar";
 
 export const Editor = ({ profile, setProfile, toggle, handleSubmit }) => (
@@ -13,14 +13,12 @@ export const Editor = ({ profile, setProfile, toggle, handleSubmit }) => (
         type="text"
         placeholder="location"
         value={profile.location}
-        onChange={event =>
-          setProfile({ ...profile, location: event.target.value })
-        }
+        onChange={e => setProfile({ ...profile, location: e.target.value })}
       />
       <Bio
         placeholder="bio"
         value={profile.bio}
-        onChange={event => setProfile({ ...profile, bio: event.target.value })}
+        onChange={e => setProfile({ ...profile, bio: e.target.value })}
       />
       <Buttons>
         <ButtonRegular
@@ -43,6 +41,9 @@ export const Editor = ({ profile, setProfile, toggle, handleSubmit }) => (
 const Container = styled.form`
   position: relative;
   display: flex;
+  padding: 20px;
+  border-radius: 4px;
+  background: #ffffff;
 `;
 
 const Details = styled.div`
@@ -81,6 +82,6 @@ const Bio = styled.textarea`
 
 const Buttons = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 20px;
 `;

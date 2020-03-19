@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ButtonLink } from "../Common";
+import { ButtonLink } from "../../Common";
 import { Tags } from "./Tags";
 
 export const View = ({ tech }) => (

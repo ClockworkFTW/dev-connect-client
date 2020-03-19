@@ -2,18 +2,20 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const ProjectMatch = ({ user, stack }) => {
+const Match = ({ user, userStack, projectStack }) => {
+  let matchStack = userStack || user.stack;
+
   let matchCount = 0;
 
-  user.stack.forEach(US => {
-    stack.forEach(PS => {
-      if (US === PS) {
+  matchStack.forEach(userTech => {
+    projectStack.forEach(projectTech => {
+      if (userTech === projectTech) {
         matchCount++;
       }
     });
   });
 
-  const matchPercent = Math.round((matchCount / stack.length) * 100);
+  const matchPercent = Math.round((matchCount / projectStack.length) * 100);
 
   return (
     <Container>
@@ -48,6 +50,4 @@ const Text = styled.h3`
   color: #434190;
 `;
 
-const mapStateToProps = state => ({ user: state.user.data });
-
-export default connect(mapStateToProps)(ProjectMatch);
+export default connect(state => ({ user: state.user.data }))(Match);

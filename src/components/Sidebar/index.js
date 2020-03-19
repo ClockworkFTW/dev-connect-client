@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -6,13 +6,15 @@ import styled from "styled-components";
 import { userSignOut } from "../../reducers/user";
 
 import { ButtonLink, ButtonRegular } from "../Common";
+import { Profile } from "./Profile";
+import { TeamList } from "./Teams";
 
-const Sidebar = ({ user, userSignOut }) => {
+const Sidebar = ({ user, userSignOut, projects }) => {
   const { pathname } = useLocation();
-
+  const [toggleTeams, setToggleTeams] = useState(true);
   return (
     <Container>
-      <h1>profile</h1>
+      <Profile user={user} />
       <ul>
         <Link active={pathname.includes("/project")}>
           <ButtonLink
@@ -25,15 +27,18 @@ const Sidebar = ({ user, userSignOut }) => {
           </ButtonLink>
         </Link>
         <Link active={pathname.includes("/team")}>
-          <ButtonLink
-            path="/team"
+          <ButtonRegular
+            onClick={() => setToggleTeams(!toggleTeams)}
             icon={["far", "users-crown"]}
             size="18px"
             theme="basic"
           >
             Teams
-          </ButtonLink>
+          </ButtonRegular>
         </Link>
+        {toggleTeams && (
+          <TeamList user={user} projects={projects} path={pathname} />
+        )}
         <Link active={pathname.includes("/message")}>
           <ButtonLink
             path="/message"
@@ -68,6 +73,9 @@ const Container = styled.div`
 const Link = styled.li`
   padding: 6px 20px;
   background: ${props => (props.active ? "#4A5568" : "#2D3748")};
+  &:hover {
+    background: #4a5568;
+  }
 `;
 
 const Footer = styled.div`
@@ -78,6 +86,9 @@ const Footer = styled.div`
   padding: 20px;
 `;
 
-const mapStateToProps = state => ({ user: state.user.data });
+const mapStateToProps = state => ({
+  user: state.user.data,
+  projects: state.projects.data
+});
 
 export default connect(mapStateToProps, { userSignOut })(Sidebar);

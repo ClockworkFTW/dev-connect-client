@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ButtonRegular } from "../Common";
+import { ButtonRegular } from "../../Common";
 import { Gravatar } from "./Gravatar";
 import FriendButton from "./FriendButton";
 
-export const View = ({ profile, owner, toggle }) => (
+export const Display = ({ profile, owner, toggle }) => (
   <Container>
     <Gravatar email={profile.email} size="100" />
     <Details>
@@ -21,7 +21,7 @@ export const View = ({ profile, owner, toggle }) => (
             size="20px"
           />
         ) : (
-          <FriendButton id={profile._id} />
+          <FriendButton id={profile.id} />
         )}
       </Buttons>
     </Details>
@@ -31,6 +31,9 @@ export const View = ({ profile, owner, toggle }) => (
 const Container = styled.div`
   position: relative;
   display: flex;
+  padding: 20px;
+  border-radius: 4px;
+  background: #ffffff;
 `;
 
 const Details = styled.div`
@@ -57,6 +60,6 @@ const Bio = styled.p`
 
 const Buttons = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 20px;
 `;

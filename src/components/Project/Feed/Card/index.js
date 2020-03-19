@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Vote from "./Vote";
 import Match from "./Match";
 import { Created } from "./Created";
-import { Chip } from "../../../Profile/Chip";
+import { Chip } from "../../../Profile/Page/Chip";
 import { Difficulty } from "./Difficulty";
 
 export const Card = ({ project }) => (
@@ -20,7 +20,7 @@ export const Card = ({ project }) => (
       <Description>{project.description}</Description>
       <Banner>
         <Chip user={project.manager} />
-        <Match stack={project.stack} />
+        <Match projectStack={project.stack} />
       </Banner>
     </Details>
   </Container>

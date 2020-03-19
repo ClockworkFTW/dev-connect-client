@@ -9,14 +9,13 @@ import {
 import { userInit } from "./reducers/user";
 
 import { GlobalStyle, PrivateRoute } from "./components/Common";
-import LandingPage from "./routes/LandingPage";
-import SignInPage from "./routes/SignInPage";
-import SignUpPage from "./routes/SignUpPage";
-import ProfilePage from "./routes/ProfilePage";
-import ProjectFeed from "./routes/ProjectFeed";
-import ProjectForm from "./routes/ProjectForm";
-import ProjectPage from "./routes/ProjectPage";
-import TechPage from "./routes/TechPage";
+import { LandingPage } from "./components/Landing";
+import { SignUpPage, SignInPage } from "./components/Authentication";
+import { ProfilePage } from "./components/Profile";
+import { ProjectFeed, ProjectForm, ProjectPage } from "./components/Project";
+import { TechPage } from "./components/Tech";
+import { TeamPage, TeamAdmin } from "./components/Team";
+import MessagePage from "./routes/MessagePage";
 
 const App = ({ userInit }) => {
   useEffect(() => {
@@ -50,6 +49,15 @@ const App = ({ userInit }) => {
         </PrivateRoute>
         <PrivateRoute path="/tech/:id">
           <TechPage />
+        </PrivateRoute>
+        <PrivateRoute path="/team/:id" exact>
+          <TeamPage />
+        </PrivateRoute>
+        <PrivateRoute path="/team/:id/admin" exact>
+          <TeamAdmin />
+        </PrivateRoute>
+        <PrivateRoute path="/message">
+          <MessagePage />
         </PrivateRoute>
       </Switch>
     </Router>

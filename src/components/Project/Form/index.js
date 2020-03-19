@@ -1,53 +1,38 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { createProject } from "../../../reducers/project";
 
-import Stack from "../../Stack";
+import { Layout } from "../../Common";
+import { Menu } from "./Menu";
+import { View } from "./View";
 
 const ProjectForm = ({ createProject }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [difficulty, setDifficulty] = useState("");
-  const [stack, setStack] = useState([]);
+  const [project, setProject] = useState({
+    name: "",
+    description: "",
+    difficulty: "",
+    stack: []
+  });
+
+  const history = useHistory();
 
   const handleSubmit = event => {
     event.preventDefault();
-    const project = {
-      name,
-      description,
-      difficulty,
-      stack
-    };
     createProject(project);
+    history.push("/project");
   };
 
   return (
-    <div>
-      <h1>New Project</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="name"
-          value={name}
-          onChange={event => setName(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="description"
-          value={description}
-          onChange={event => setDescription(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="difficulty"
-          value={difficulty}
-          onChange={event => setDifficulty(event.target.value)}
-        />
-        <Stack allowEdit={true} stack={stack} setStack={setStack} />
-        <button type="submit">create</button>
-      </form>
-    </div>
+    <Layout>
+      <Menu />
+      <View
+        project={project}
+        setProject={setProject}
+        handleSubmit={handleSubmit}
+      />
+    </Layout>
   );
 };
 

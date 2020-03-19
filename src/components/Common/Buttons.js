@@ -3,29 +3,42 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled, { css } from "styled-components";
 
-const ButtonLink = ({ path, href, icon, children, size, theme }) =>
-  path ? (
+const ButtonLink = props => {
+  const { path, href, icon, children, size, theme, disabled } = props;
+
+  return path ? (
     <RouterLink to={path}>
-      <Button type="buton" size={size} theme={theme}>
+      <Button type="buton" size={size} theme={theme} disabled={disabled}>
         {icon && <Icon icon={icon} text={children} />}
         {children && <Text>{children}</Text>}
       </Button>
     </RouterLink>
   ) : (
     <AnchorLink href={href}>
-      <Button type="buton" size={size} theme={theme}>
+      <Button type="buton" size={size} theme={theme} disabled={disabled}>
         {icon && <Icon icon={icon} text={children} />}
         {children && <Text>{children}</Text>}
       </Button>
     </AnchorLink>
   );
+};
 
-const ButtonRegular = ({ type, onClick, icon, children, size, theme }) => (
-  <Button type={type || "buton"} onClick={onClick} size={size} theme={theme}>
-    {icon && <Icon icon={icon} text={children} />}
-    {children && <Text>{children}</Text>}
-  </Button>
-);
+const ButtonRegular = props => {
+  const { type, onClick, icon, children, size, theme, disabled } = props;
+
+  return (
+    <Button
+      type={type || "buton"}
+      onClick={onClick}
+      size={size}
+      theme={theme}
+      disabled={disabled}
+    >
+      {icon && <Icon icon={icon} text={children} />}
+      {children && <Text>{children}</Text>}
+    </Button>
+  );
+};
 
 const basic = css`
   border: none;
@@ -65,6 +78,9 @@ const Button = styled.button`
   font-size: ${props => props.size || "14px"};
   &:hover {
     cursor: pointer;
+  }
+  &:disabled {
+    opacity: 0.5;
   }
 `;
 

@@ -16,6 +16,7 @@ const Container = styled(Link)`
 `;
 
 const Icon = styled.img`
+  display: block;
   width: 40px;
   height: 40px;
 `;

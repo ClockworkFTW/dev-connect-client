@@ -1,28 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { ButtonRegular } from "../../Common";
 import { Menu } from "./Menu";
 import { Tech } from "./Tech";
 
-export const Editor = ({ stack, stackList, handleSelect, setEdit }) => (
-  <Wrapper>
-    <Menu />
-    <Container>
-      {stackList.map(tech => (
-        <Tech
-          key={tech._id}
-          tech={tech}
-          stack={stack}
-          handleSelect={handleSelect}
-        />
-      ))}
-    </Container>
-    <ButtonRegular onClick={() => setEdit(false)} theme="primary">
-      done
-    </ButtonRegular>
-  </Wrapper>
-);
+export const Editor = ({ stack, stackList, handleSelect, setEdit }) => {
+  const [search, setSearch] = useState("");
+  const filteredStackList = stackList.filter(e =>
+    e.name.toLowerCase().includes(search.toLowerCase())
+  );
+  return (
+    <Wrapper>
+      <Menu search={search} setSearch={setSearch} />
+      <Container>
+        {filteredStackList.map(tech => (
+          <Tech
+            key={tech._id}
+            tech={tech}
+            stack={stack}
+            handleSelect={handleSelect}
+          />
+        ))}
+      </Container>
+      <ButtonRegular onClick={() => setEdit(false)} theme="primary">
+        done
+      </ButtonRegular>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   position: absolute;

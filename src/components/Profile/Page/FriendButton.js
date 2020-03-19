@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { editUser } from "../../reducers/user";
+import { editUser } from "../../../reducers/user";
 
-import { ButtonRegular } from "../Common";
+import { ButtonRegular } from "../../Common";
 
 const FriendButton = ({ id, user, editUser }) => {
   const { friends } = user;
 
   let isFriend = false;
-  friends.forEach(e => {
-    if (e._id === id) {
+  friends.forEach(friend => {
+    if (friend.id === id) {
       isFriend = true;
     }
   });
@@ -21,7 +21,7 @@ const FriendButton = ({ id, user, editUser }) => {
   };
 
   const removeFriend = () => {
-    const updatedFriends = friends.filter(friend => friend._id !== id);
+    const updatedFriends = friends.filter(friend => friend.id !== id);
     editUser({ friends: updatedFriends });
   };
 

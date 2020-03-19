@@ -1,5 +1,5 @@
-import Feed from "./Feed";
-import Form from "./Form";
-import Page from "./Page";
+import ProjectFeed from "./Feed";
+import ProjectForm from "./Form";
+import ProjectPage from "./Page";
 
-export { Feed, Form, Page };
+export { ProjectFeed, ProjectForm, ProjectPage };
